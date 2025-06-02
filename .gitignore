@@ -5,6 +5,8 @@
 !index.mjs
 !www/
 !www/*.html
+# TODO: run `mogrify -strip www/*.png` on commit
+!www/*.png
 !README.md
 !wrangler.toml
 !.gitignore
