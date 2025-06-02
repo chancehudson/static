@@ -5,6 +5,8 @@
 !index.mjs
 !www/
 !www/*.html
+!scripts/*.mjs
+!scripts/
 # TODO: run `mogrify -strip www/*.png` on commit
 !www/*.png
 !README.md
