@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But not these files...
+!index.mjs
+!www/
+!www/*.html
+!README.md
+!wrangler.toml
+!.gitignore
+
