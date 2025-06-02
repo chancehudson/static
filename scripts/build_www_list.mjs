@@ -11,7 +11,11 @@ const files = (await fs.readdir('./www'))
   }))
 // sort the files by oldest first
 files
-  .sort((a, b) => a.time - b.time)
+  .sort((a, b) => b.time - a.time)
+
+// put index.html at the bottom
+files.push(files[0])
+files.shift()
 
 const marker = '<!--build_www_list-->'
 const marker_regex = /<!--build_www_list-->[\s\S]*?<!--build_www_list-->/g
@@ -26,7 +30,7 @@ const out_html =
 
 ${files.map(({name, time}) => `
 <br />
-<a href="/${name}" target="_blank">${name.split('.')[0]}</a> - <span>${new Date(time).toDateString()}</span>
+<a href="/${name}" target="_blank">${name}</a> - <span>${new Date(time).toDateString()}</span>
 </a>`
 ).join('\n')}
 
