@@ -1,11 +1,17 @@
-import { promises as fs } from 'fs'
-
+import { promises as fs, statSync } from 'fs'
 
 // get our existing index source code
 const index_src = (await fs.readFile('./www/index.html')).toString()
 
 // look for insertion comments
-const files = await fs.readdir('./www')
+const files = (await fs.readdir('./www'))
+  .map(name => ({
+    name,
+    time: statSync('./www/' + name).mtime.getTime()
+  }))
+// sort the files by oldest first
+files
+  .sort((a, b) => a.time - b.time)
 
 const marker = '<!--build_www_list-->'
 const marker_regex = /<!--build_www_list-->[\s\S]*?<!--build_www_list-->/g
@@ -16,10 +22,17 @@ if (!match) {
 
 const out_html = 
 `${marker}
-${files.map(name => `<a href="/${name}" target="_blank">${name.split('.')[0]}</a>`
+<h3><strong>contents of /</strong></h3>
+
+${files.map(({name, time}) => `
+<br />
+<a href="/${name}" target="_blank">${name.split('.')[0]}</a> - <span>${new Date(time).toDateString()}</span>
+</a>`
 ).join('\n')}
+
 ${marker}`
 
 const new_index_src = index_src.replace(match, out_html)
 
 await fs.writeFile('./www/index.html', new_index_src)
+
