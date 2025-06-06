@@ -1,47 +1,107 @@
-<html>
-	<body >
-		<div style="max-width: 400px; margin: auto">
-	<h3 id="a-2d-platformer-mmorpg">A 2d platformer MMORPG</h3>
-<p>Right, then instead of a map &quot;going dark&quot; when there are no players it just exists less accurately. This allows things like random events or mob interactions to continue to occur.</p>
-<p>This could be used to shape the structure of maps over significant timescales of the games existence. e.g. a game world that has existed for decades and changed structure not because of developer choices, but world events.</p>
-<p>The world can be persisted as a canonical state that is the map structure keyed to a signed hash (signed by the operator) and persisted in the reality (e.g. on eth or btc mainnet). Then the world is served on public endpoints and can be publicly verified and mutated by the developers (analogous to unilateral hard forks).</p>
-<p>This would require extensive forethought, but not near as much as something like ethereum mainnet because forks are less expensive.</p>
-<p>Because it&#39;s just a game lol</p>
-<p>--</p>
-<p>Types of global events that may occur:</p>
-<ul>
-<li><p>meteor strike that makes platforms on a map impassible. Odds: 1% each day for 1 impact to any position on any map. Can be fixed for $$1B ($$ is game currency)</p>
-</li>
-<li><p>boss mob invading a map and taking control. Killing it should require X concurrent players of median level Y, Z minutes to defeat with technical difficulty of Tau. Odds: 1% each day for 1 boss mob to spawn on any platform any map</p>
-</li>
-</ul>
-<p>These types of probabilities can themselves be introduced to the map hash. The players participate in an evolving world </p>
-<p>The game world can be bound into reality by putting a $$ balance for each user in the world hash in a ZK compatible format.</p>
-<p>Players can create ZK bonds of payment that execute on the ethereum mainnet and resolve in the game world as operated by operator O. A player Alice might create a transaction to trade $$100 for 0.1 eth. The transaction contains the following:</p>
-<pre><code>{
-<span class="hljs-symbol">  to:</span> u64,
-<span class="hljs-symbol">  from:</span> u64,
-<span class="hljs-symbol">  amount_sent:</span> u256,
-<span class="hljs-symbol">  asset_sent:</span> $$,
-<span class="hljs-symbol">  amount_received:</span> u256,
-<span class="hljs-symbol">  asset_received:</span> ETH,
-<span class="hljs-symbol">  sig_sender:</span> bytes,
-<span class="hljs-symbol">  sig_receiver:</span> bytes,
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Document</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.25em; }
+        p { margin-bottom: 1em; }
+        ul, ol { padding-left: 1.5em; margin-bottom: 1em; }
+        li { margin-bottom: 0.25em; }
+        blockquote {
+            border-left: 4px solid #ddd;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 2em 0;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<h3>A 2d platformer MMORPG</h3>
 
-}
-</code></pre><p>Alice sends the trade offer to Bob, if Bob agrees then both fill in the appropriate fields of the trade offer. Either may then submit the signed offer to the game operator O.</p>
-<p>O generates a zk proof that the map state root was changed in such a way that the sender account is decremented $$100 (burning the value).</p>
-<p>O also generates two signed statements:</p>
+<p>Right, then instead of a map "going dark" when there are no players it just exists less accurately. This allows things like random events or mob interactions to continue to occur.</p>
+
+<p>This could be used to shape the structure of maps over significant timescales of the games existence. e.g. a game world that has existed for decades and changed structure not because of developer choices, but world events.</p>
+
+<p>The world can be persisted as a canonical state that is the map structure keyed to a signed hash (signed by the operator) and persisted in the reality (e.g. on eth or btc mainnet). Then the world is served on public endpoints and can be publicly verified and mutated by the developers (analogous to unilateral hard forks).</p>
+
+<p>This would require extensive forethought, but not near as much as something like ethereum mainnet because forks are less expensive.</p>
+
+<p>Because it's just a game lol</p>
+
+<p>--</p>
+
+<p>Types of global events that may occur:</p>
+
 <ul>
-<li>statement for sender: allows creating $$100 if transfer condition is not met in 1 hour</li>
-<li>statement for receiver: allows creating $$100 if transfer condition is met in less than 1 hour</li>
+<li>meteor strike that makes platforms on a map impassible. Odds: 1% each day for 1 impact to any position on any map. Can be fixed for $$1B ($$ is game currency)</li>
+<li>boss mob invading a map and taking control. Killing it should require X concurrent players of median level Y, Z minutes to defeat with technical difficulty of Tau. Odds: 1% each day for 1 boss mob to spawn on any platform any map</li>
 </ul>
-<p>Game operator updates the onchain map root and then watches for ETH deposits to sender (the ETH payment for $$). Once this occurs receiver can use their statement to create $$100 and complete the transaction. If the ETH transaction is not made then sender can use their statement to reclaim their payment.</p>
+These types of probabilities can themselves be introduced to the map hash. The players participate in an evolving world
+
+<p>The game world can be bound into reality by putting a $$ balance for each user in the world hash in a ZK compatible format.</p>
+
+<p>Players can create ZK bonds of payment that execute on the ethereum mainnet and resolve in the game world as operated by operator O. A player Alice might create a transaction to trade $$100 for 0.1 eth. The transaction contains the following:</p>
+
+<pre style="background-color: #2d3748; color: #e2e8f0; padding: 16px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', Consolas, Monaco, monospace; margin: 16px 0;"><code>{
+  to: u64,
+  from: u64,
+  amount_sent: u256,
+  asset_sent: $,
+  amount_received: u256,
+  asset_received: ETH,
+  sig_sender: bytes,
+  sig_receiver: bytes,
+
+}</code></pre>
+
+<p>Alice sends the trade offer to Bob, if Bob agrees then both fill in the appropriate fields of the trade offer. Either may then submit the signed offer to the game operator O.</p>
+
+<p>O generates a zk proof that the map state root was changed in such a way that the sender account is decremented $$100 (burning the value).</p>
+
+<p>O also generates two signed statements:<br><ul><br><li>statement for sender: allows creating $$100 if transfer condition is not met in 1 hour</li><br><li>statement for receiver: allows creating $$100 if transfer condition is met in less than 1 hour</li><br></ul><br>Game operator updates the onchain map root and then watches for ETH deposits to sender (the ETH payment for $$). Once this occurs receiver can use their statement to create $$100 and complete the transaction. If the ETH transaction is not made then sender can use their statement to reclaim their payment.</p>
+
 <p>Using this pattern external markets can exist with little friction. If game operator O begins censoring or rejecting transactions the tooling and game state can be reused by another game operator (forked). O can also design new types of transactions to facilitate new types of external markets.</p>
-<p>That is, game transactions can occur in and out of the game. e.g. any kind of trade between any number of users can be created and executed outside of O&#39;s infrastructure. $$ could thus be traded for any asset on the ethereum network. e.g. ETH, <a href="https://coinmarketcap.com/currencies/multi-collateral-dai/">DAI</a>, WBTC, etc.</p>
-<p>WBTC being an exposure mechanism for BTC, which is an exposure mechanism for the value of searching <code>0..2**256</code> (looking for a random number between <code>0</code> and <code>115792089237316195423570985008687907853269984665640564039457584007913129639936</code>).</p>
+
+<p>That is, game transactions can occur in and out of the game. e.g. any kind of trade between any number of users can be created and executed outside of O's infrastructure. $$ could thus be traded for any asset on the ethereum network. e.g. ETH, <a href="https://coinmarketcap.com/currencies/multi-collateral-dai/">DAI</a>, WBTC, etc.</p>
+
+WBTC being an exposure mechanism for BTC, which is an exposure mechanism for the value of searching <code style="background-color: #4a5568; color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Consolas, Monaco, monospace;">0..2**256</code> (looking for a random number between <code style="background-color: #4a5568; color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Consolas, Monaco, monospace;">0</code> and <code style="background-color: #4a5568; color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Consolas, Monaco, monospace;">115792089237316195423570985008687907853269984665640564039457584007913129639936</code>).
+
 <p>DAI being an exposure mechanism for USD using ETH</p>
+
 <p>USDC being an exposure mechanism for USD using ETH and COIN</p>
-		</div>
-	</body>
+</body>
 </html>

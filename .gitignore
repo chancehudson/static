@@ -1,15 +1,9 @@
-# Ignore everything
-*
+wrangler/
+.DS_Store
+*.tmp
+*.swp
+.env
+*.env
 
-# But not these files...
-!index.mjs
-!www/
-!www/*.html
-!scripts/*.mjs
-!scripts/
-# TODO: run `mogrify -strip www/*.png` on commit
-!www/*.png
-!README.md
-!wrangler.toml
-!.gitignore
+node_modules/
 
