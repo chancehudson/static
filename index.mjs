@@ -5,6 +5,9 @@ export default {
       return env.ASSETS.fetch(new Request(url.toString() + "index.html"));
     }
 
-    return env.ASSETS.fetch(request);
+    // Decode the pathname to handle special characters
+    const decodedPathname = decodeURIComponent(url.pathname);
+    const newUrl = new URL(url.origin + decodedPathname);
+    return env.ASSETS.fetch(new Request(newUrl));
   },
 };

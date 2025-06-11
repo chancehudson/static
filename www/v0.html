@@ -1,130 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Document</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            font-weight: 600;
-        }
-        h1 { font-size: 2em; }
-        h2 { font-size: 1.5em; }
-        h3 { font-size: 1.25em; }
-        p { margin-bottom: 1em; }
-        ul, ol { padding-left: 1.5em; margin-bottom: 1em; }
-        li { margin-bottom: 0.25em; }
-        blockquote {
-            border-left: 4px solid #ddd;
-            margin: 1em 0;
-            padding-left: 1em;
-            color: #666;
-        }
-        hr {
-            border: none;
-            height: 1px;
-            background-color: #ddd;
-            margin: 2em 0;
-        }
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
 <h1>MMO Game Economy: Balancing Human and Computational Resources</h1>
-
 <p>This MMO design treats both human participation and computational infrastructure as valuable, tradeable resources that must be balanced against each other.</p>
-
 <h2>Core Economic Model</h2>
-
 <p><strong>Human Resources as Value</strong></p>
-
 <ul>
 <li>Players contribute population density, economic activity, and content creation</li>
 <li>Their presence in shared spaces generates emergent gameplay and social value</li>
 <li>Traditional model flipped: players become economic contributors, not just consumers</li>
 </ul>
-<strong>Computational Resources as Commodities</strong>
-
+<p><strong>Computational Resources as Commodities</strong></p>
 <ul>
 <li>Server capacity treated as scarce, explicitly valuable resource</li>
-<li>Players pay currency for private instances, with the game "buying back" that currency through computational work (instance hosting)</li>
+<li>Players pay currency for private instances, with the game &quot;buying back&quot; that currency through computational work (instance hosting)
 <ul>
-<li><em>Example: The Timekeeper NPC at training grounds offers: "I can isolate a practice arena for you, adventurer, but it requires 50 gold to power the temporal matrices. You'll have exactly 10 minutes of uninterrupted training before the instance collapses. The currency helps fuel the arcane engines that maintain your private reality bubble."</em></li>
+<li><em>Example: The Timekeeper NPC at training grounds offers: &quot;I can isolate a practice arena for you, adventurer, but it requires 50 gold to power the temporal matrices. You'll have exactly 10 minutes of uninterrupted training before the instance collapses. The currency helps fuel the arcane engines that maintain your private reality bubble.&quot;</em></li>
 </ul>
+</li>
 <li>Market-driven allocation replaces arbitrary resource distribution</li>
 </ul>
 <h2>Currency Controls</h2>
-
 <p><strong>Inflationary Pressures</strong></p>
-
 <ul>
 <li>Mobs drop gold and valuable items when killed</li>
 <li>Quest completion rewards inject new currency into the economy</li>
 <li>Players continuously generate wealth through normal gameplay activities</li>
 </ul>
-<strong>Deflationary Mechanisms</strong>
-
+<p><strong>Deflationary Mechanisms</strong></p>
 <ul>
 <li>Players buying private instances removes currency permanently from circulation</li>
 <li>Tax payments on property, guilds, or premium services create currency sinks</li>
 <li>Computational costs become natural economic drains that scale with server usage</li>
 </ul>
-<strong>Human Resource Subsidy</strong>
-
+<p><strong>Human Resource Subsidy</strong></p>
 <ul>
 <li>Shared space players get subsidized gameplay through lower costs</li>
 <li>Their participation cross-subsidizes computational expenses</li>
 <li>Social interaction becomes economically valuable and encouraged</li>
 </ul>
 <h2>Market Dynamics</h2>
-
 <p>Unlike traditional MMOs with artificial sinks/faucets, this creates genuine markets where:</p>
-
 <ul>
 <li><strong>Supply</strong>: Computational capacity + human participation</li>
 <li><strong>Demand</strong>: Player desire for experience/stat progression balanced against preference for guaranteed access vs. social gameplay</li>
 <li><strong>Price Discovery</strong>: Market forces balance solo vs. group experiences</li>
 </ul>
-The system provides economic controls through resource exchange rates: instance pricing, XP rates, and spawn density costs directly affect player distribution and economic flow.
-
+<p>The system provides economic controls through resource exchange rates: instance pricing, XP rates, and spawn density costs directly affect player distribution and economic flow.</p>
 <h2>The Bigger Vision</h2>
-
 <p>This recognizes MMO worlds as actual economies where human time and computational resources are both scarce, valuable inputs requiring market-based allocation. It potentially solves traditional MMO problems (inflation, inefficient resource allocation, server costs) through genuine market dynamics rather than artificial game mechanics.</p>
-
-<p><strong>It's not just "a game with taxes" - it's treating virtual worlds as real economies with meaningful resource scarcity and market-driven solutions.</strong></p>
-
+<p><strong>It's not just &quot;a game with taxes&quot; - it's treating virtual worlds as real economies with meaningful resource scarcity and market-driven solutions.</strong></p>
 <h2>Blockchain-Anchored Economy</h2>
-
-<p>The game economy binds to blockchain infrastructure by "rolling up" the complete map and player state into cryptographic hashes stored on-chain. Game operators generate ZK proofs upon request from users - for example, a player can prove they reached level 100 without revealing their character identity or other stats. More complex cases involve players collaboratively requesting ZK proofs for multi-party transactions: Alice and Bob can jointly prove that Alice's game balance decreased by 100 gold while Bob's increased by 100 gold (completing a trade) without revealing their actual account balances or identities to external observers.</p>
-
+<p>The game economy binds to blockchain infrastructure by &quot;rolling up&quot; the complete map and player state into cryptographic hashes stored on-chain. Game operators generate ZK proofs upon request from users - for example, a player can prove they reached level 100 without revealing their character identity or other stats. More complex cases involve players collaboratively requesting ZK proofs for multi-party transactions: Alice and Bob can jointly prove that Alice's game balance decreased by 100 gold while Bob's increased by 100 gold (completing a trade) without revealing their actual account balances or identities to external observers.</p>
 <p>This allows external verification of the game's economic integrity while enabling real asset trading through ZK-verified bonds between game currency and blockchain assets (ETH, DAI, WBTC). If operators censor transactions or manipulate the economy, the entire game state can fork to new operators while preserving player investments.</p>
-
 <p><strong>The ultimate vision: MMO worlds as persistent, economically-anchored realities that evolve through player actions and market forces rather than developer decree.</strong></p>
-
 <hr>
-
 <h2>Context Notes</h2>
-
-<p>This analysis examines a game design that treats computational resources as tradeable commodities within virtual economies. The "tax-like" system creates genuine market dynamics balancing human participation value against infrastructure costs, potentially bridging virtual and real-world resource allocation principles through blockchain integration and persistent world mechanics.</p>
-</body>
-</html>
+<p>This analysis examines a game design that treats computational resources as tradeable commodities within virtual economies. The &quot;tax-like&quot; system creates genuine market dynamics balancing human participation value against infrastructure costs, potentially bridging virtual and real-world resource allocation principles through blockchain integration and persistent world mechanics.</p>

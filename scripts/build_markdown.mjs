@@ -1,5 +1,12 @@
 import { promises as fs, statSync } from "fs";
-import markdownToHtml from "./ai/md_to_markdown.mjs";
+
+import MarkdownIt from "markdown-it";
+const markdown = new MarkdownIt({
+  html: true,
+});
+
+// interesting
+// import markdownToHtml from "./ai/md_to_markdown.mjs";
 
 const markdown_files = (await fs.readdir("./www")).filter((name) =>
   name.endsWith(".md"),
@@ -8,7 +15,7 @@ const markdown_files = (await fs.readdir("./www")).filter((name) =>
 for (const markdown_file of markdown_files) {
   const filepath = "./www/" + markdown_file;
   const markdown_src = (await fs.readFile(filepath)).toString();
-  const markdown_html = markdownToHtml(markdown_src);
+  const markdown_html = markdown.render(markdown_src);
   let outpath = filepath.split("");
   outpath.splice(-3, 3, ...".html".split(""));
   outpath = outpath.join("");

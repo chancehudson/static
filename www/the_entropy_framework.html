@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>The Entropy Framework</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Arial", sans-serif;
+                background: linear-gradient(
+                    135deg,
+                    #0a0a0a 0%,
+                    #1a1a2e 50%,
+                    #16213e 100%
+                );
+                color: white;
+                overflow-x: hidden;
+                min-height: 100vh;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .hero {
+                margin-bottom: 60px;
+            }
+
+            .title {
+                font-size: 3.5rem;
+                font-weight: bold;
+                background: linear-gradient(
+                    45deg,
+                    #ff6b6b,
+                    #4ecdc4,
+                    #45b7d1,
+                    #96ceb4
+                );
+                background-size: 300% 300%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: gradient 4s ease infinite;
+                margin-bottom: 20px;
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            }
+
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+                opacity: 0.9;
+                margin-bottom: 40px;
+                font-weight: 300;
+            }
+
+            .framework-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin: 50px 0;
+            }
+
+            .framework-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                padding: 30px;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .framework-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent
+                );
+                transition: left 0.5s;
+            }
+
+            .framework-card:hover::before {
+                left: 100%;
+            }
+
+            .framework-card:hover {
+                transform: translateY(-10px);
+                border-color: rgba(255, 255, 255, 0.3);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .card-icon {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                display: block;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 15px;
+                color: #4ecdc4;
+            }
+
+            .card-description {
+                font-size: 1rem;
+                line-height: 1.6;
+                opacity: 0.9;
+            }
+
+            .revelation {
+                background: rgba(255, 107, 107, 0.1);
+                border-radius: 20px;
+                padding: 40px;
+                margin: 50px 0;
+                border: 2px solid rgba(255, 107, 107, 0.3);
+            }
+
+            .revelation h2 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+                color: #ff6b6b;
+            }
+
+            .revelation p {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+
+            .cta {
+                margin-top: 60px;
+            }
+
+            .cta-text {
+                font-size: 1.8rem;
+                font-weight: bold;
+                margin-bottom: 20px;
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            @media (max-width: 768px) {
+                .title {
+                    font-size: 2.5rem;
+                }
+
+                .framework-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .container {
+                    padding: 20px 15px;
+                }
+            }
+
+            .pulse {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.7;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="hero">
+                <h1 class="title">THE ENTROPY FRAMEWORK</h1>
+                <p class="subtitle">A Thermodynamic Theory of Existence</p>
+            </div>
+
+            <div class="framework-grid">
+                <div class="framework-card">
+                    <span class="card-icon">🌌</span>
+                    <h3 class="card-title">Information Exists</h3>
+                    <p class="card-description">
+                        Mathematical truths existed before they were discovered
+                        and exist regardless of whether time exists. π, prime
+                        numbers, and cryptographic proofs were always true,
+                        waiting to be found. Information exists before, during,
+                        and after time.
+                    </p>
+                </div>
+
+                <div class="framework-card">
+                    <span class="card-icon">⚛️</span>
+                    <h3 class="card-title">Quantum Information Emerges</h3>
+                    <p class="card-description">
+                        Intelligence measures time by observing changes; the
+                        rabbit changes behavior based on changes to its
+                        surroundings. Intelligence allows entropy to shape what
+                        quantum information exists (what happens at what point
+                        in time).
+                        <a
+                            href="https://en.wikipedia.org/wiki/Heat_death_of_the_universe"
+                            target="_blank"
+                            style="
+                                color: #ff6b6b;
+                                text-decoration: none;
+                                border-bottom: 1px solid #ff6b6b;
+                            "
+                            >Entropy will eventually be unable to change
+                            itself</a
+                        >—intelligence only decides when.
+                    </p>
+                </div>
+
+                <div class="framework-card">
+                    <span class="card-icon">🌀</span>
+                    <h3 class="card-title">Nested Reality Theory</h3>
+                    <p class="card-description">
+                        Entropy avoids heat death by creating the maximum amount
+                        of time it possibly can—by creating as much intelligence
+                        as possible. This increases the amount of quantum
+                        information that exists (more things happen). Entropy
+                        wants as much time to be perceived as possible so heat
+                        death is as far away as possible. Intelligences creating
+                        intelligences is the realization of this. If realities
+                        can be simulated, then time becomes infinite as long as
+                        the "current" reality creates another reality, and heat
+                        death is avoided forever.
+                    </p>
+                </div>
+            </div>
+
+            <div class="revelation">
+                <h2>The Entropy-Life Revelation</h2>
+                <p>
+                    Life is a physical manifestation of entropy's fear of heat
+                    death: being frozen in a final state when intelligence can
+                    no longer emerge. Every heartbeat, every choice to survive
+                    is entropy increasing the amount of time perceived before
+                    heat death.
+                </p>
+            </div>
+
+            <div class="cta">
+                <p class="cta-text pulse">
+                    You are now in the set of intelligences that recognize it.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
