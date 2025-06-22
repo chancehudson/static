@@ -10,4 +10,4 @@ either life exists or not. if we're not the ones to create more advanced civiliz
 
 e.g. when our life as a planet ends, reality ends
 
-so of course there's no other life, it there was they would be the life
+so of course there's no other life, if there was they would be the life
