@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "deploy": "node scripts/build_markdown.mjs; node scripts/build_www_list.mjs; wrangler deploy",
-    "dev": "node scripts/build_markdown.mjs; node scripts/build_www_list.mjs; wrangler dev"
+    "deploy": "node scripts/build_markdown.mjs; node scripts/build_www_list.js; wrangler deploy",
+    "dev": "node scripts/build_markdown.mjs; node scripts/build_www_list.js; wrangler dev"
   },
   "dependencies": {
     "markdown": "^0.5.0",

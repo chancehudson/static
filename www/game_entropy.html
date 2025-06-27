@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🙈</title>
+</head>
+<body style="max-width: 500px; margin: auto; font: sans-serif; margin-top: 20px;">
+<p>i did this thing where i made a seeded rng for all the entities in my game engine. It's seeded based on the entity id (<code>u128</code>) and the step index (<code>u64</code>)</p>
+<p>each step every entity gets a new deterministic rng for behavior logic</p>
+<p>and the entity id is a <code>u128</code> from a seeded rng as well</p>
+<p>so if you know the engine seed the whole thing is verifiably replayable</p>
+<p>--</p>
+<p>&quot;but what about cheaters&quot;</p>
+<p>right if you deterministically render the world you can predict where everything will be in the future</p>
+<p>but you can do that using a modern ai pretty easily anyway so who cares</p>
+<p>and as for secret values: the server has a final secret seed <code>u128</code>. It gets revealed once the world has despawned, as a backup</p>
+<p>--</p>
+<p>if you have the engine public and secret seed + all user inputs the whole thing is relatively simple to replay. e.g. there could be browser history viewers for the entire history of the game world</p>
+<p>the previous points in the game world can also be forked into a playable instance - e.g. going back in time to practice a bossfight. similar to forking an instance of a blockchain for development. Forking a point in time for training</p>
+<p>even more interesting, before the first bossfight is publicly attempted there will be no way to practice</p>
+<p>ideally stats+items get fully encoded into a zk proof, but this will take a bit more doing (without an overly authoritative structure)</p>
+
+</body>
+</html>

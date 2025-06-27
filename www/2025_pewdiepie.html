@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🙈</title>
+</head>
+<body style="max-width: 500px; margin: auto; font: sans-serif; margin-top: 20px;">
+<p>Hey, long time knower abouter of pewds here.</p>
+<p>I've been working on a game engine, you can try it <a href="https://game.keccak-doomsday.com/index.html">here</a>. You can view the source <a href="https://github.com/chancehudson/game-test/">here</a> (github is kinda down atm (???)).</p>
+<p>I do applied cryptography research using programmable cryptography. I specialize in using <a href="https://en.wikipedia.org/wiki/Zero-knowledge_proof">zero knowledge proofs</a> in applications. Essentially we can write programs of infinite length and prove that we executed said program in <a href="https://eprint.iacr.org/2025/922.pdf">~100 kb</a>. We do this by compiling programs into systems of equations over <a href="https://en.wikipedia.org/wiki/Finite_field">prime fields</a>, where a field element is an integer, and numbers wrap around at a certain number (any prime number). Like <code>u64 = 2^64 elements</code> but with a prime <a href="https://cronokirby.com/notes/2022/09/the-goldilocks-field/"><code>f2147483648 = 2^64 - 2^32 + 1 elements</code></a>. We just have to express programs that are not based on powers of 2, which is... difficult, because binary computers are based on powers of 2 which are extension fields of the binary prime field (so not prime themselves) (the set of [0, 1] <em>is</em> a prime field though). As a result programming languages don't exist for this. Modern cryptography mostly uses <a href="https://en.wikipedia.org/wiki/Polynomial_ring">polynomial rings</a> on top of finite fields, which is like taking a polynomial that is prime (no divisors other than identity) and making a variable based on it. So you have a prime <code>x^64 + 1</code>, where x is an element in a finite field. Then you can customize the outer polynomial ring <em>and</em> the inner finite field to get very granular control over the math properties. Lattices put polynomial rings into matrices where their physical size can be controlled. e.g. i have a 2x2 matrix where each element is a polynomial in <code>x^64 + 1</code> and x is in <code>f101</code>. This improves <a href="https://keccak-doomsday.com/nanoid.html">information density</a>. Then like, find a 1x2 matrix of polynomials with coefficients only 1's and 0's that multiplies by the 2x2 matrix to equal 0. This is a <a href="https://en.wikipedia.org/wiki/Computational_hardness_assumption">hardness assumption</a> called <a href="https://en.wikipedia.org/wiki/Short_integer_solution_problem">short integer solution problem</a> (specifically M-SIS). These are problems that are thought to be physically difficult to solve in our reality, given infinite technology/energy/time.</p>
+<p>The game engine is designed to be proven inside a zero knowledge proof so I can bind the game economy into reality using Ethereum. Ethereum needs to upgrade its cryptography from elliptic curves to lattices, but it's looking........ somewhat likely (?) that this will happen before quantum computers.</p>
+<p>Anywho, I saw pewdiepie getting into Linux and something about degoogling (i had to submit a google captcha to get your email btw) and thought, damn it would be cool if pewdiepie was into this too.</p>
+<p>✌️</p>
+
+</body>
+</html>
