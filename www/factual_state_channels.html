@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🙈</title>
+</head>
+<body style="max-width: 500px; margin: auto; font: sans-serif; margin-top: 20px;">
+<h2>Intro</h2>
+<p>A few years ago (maybe many years now) there was an invention called &quot;counterfactual state channels&quot;. The basic idea was, build offchain applications using statements about things that have <em>not</em> happened onchain.</p>
+<p>The concept is good, but the application space was limited.</p>
+<h3>ZK</h3>
+<p>Then we got zero knowledge proofs, and everyone thought the world was saved.</p>
+<p>Then we researched zero knowledge proofs for years and found... very little.</p>
+<p>L2 scaling worked, but the application space is still <em>very</em> limited. For example, we don't have meaningful irl transactions (e.g. without internet availability). Tooling is still <em>bad</em>, and proving is centralized in data centers and emerging ASIC networks.</p>
+<h3>Factual State Channels</h3>
+<p>I spent years obsessed with symmetric encryption (hi, i'm one of those people that spent years <a href="https://www.youtube.com/watch?v=cSBCDnpMEMk&amp;t=28s">finding nothing</a>). It just seemed like there was something there with zk.</p>
+<p>The concept of decrypting, mutating, and then re-encrypting some output data, all in zk, seemed <em>immensely</em> powerful. But it's inherently limited by the nature of symmetric encryption: one person knows the key.</p>
+<p>However, recently I combined two things:</p>
+<ol>
+<li>enforcing zk encryption operations on Ethereum</li>
+<li>shared secrets as keys for symmetric encryption</li>
+</ol>
+<p>Using these two things we can build what look like serverless financial functions on top of Ethereum.</p>
+<h3>A transaction system</h3>
+<p>As is tradition, let's make a simple transaction system. We'll model this as a single smart contract with some functions, each requiring 1 or more zk proofs.</p>
+<p>The contract state is a simple <code>map(u256 =&gt; bytes)</code>. We'll map each Ethereum address to a byte vector of encrypted state. This state will hold a first byte indicating the account type, with the following bytes holding account data. We'll map all other keys to deterministically calculated accounts.</p>
+<p>For this post we'll model two kinds of accounts</p>
+<h4>Single user account</h4>
+<ul>
+<li>1 byte: account type</li>
+<li>16 bytes: account balance (yes i'm representing ether using a <code>u128</code> and not a <code>u256</code>)</li>
+</ul>
+<h4>Payment account between two individuals</h4>
+<ul>
+<li>1 byte: account type</li>
+<li>16 bytes: account balance</li>
+<li>32 bytes: hash of owner key (can withdraw from account)</li>
+<li>32 bytes: hash of sender key (can deposit to account)</li>
+</ul>
+<h4>Deposit</h4>
+<p>The deposit function is simple. A user sends some Ether to the contract, along with a zk proof incrementing the balance in the encrypted data. The input is the encrypted state, and the output is the modified encrypted state. If the user does not have state, the zk function initializes the balance to 0.</p>
+<p>We'll disallow deposits to payment accounts for simplicity, though it is trivially doable.</p>
+<h4>Transfer</h4>
+<p>Transfer functions are tricky. Each user state is encrypted using a secret key known only to the user, so how can we safely modify someone elses balance?</p>
+<p>The key is making a separate account with a <strong>shared secret</strong>. We assume the two parties are capable of communicating to do a 1 time setup. We'll call the private keys for sender and owner <code>sender_key</code> and <code>owner_key</code> respectively.</p>
+<p>Sender and owner agree on a shared secret <code>H(H(sender_key), H(owner_key))</code>. This is accomplished by having both parties produce a zk proof of knowledge for preimage of either <code>H(sender_key)</code> or <code>H(owner_key)</code> (or they can just claim knowledge, lying here gains neither anything).</p>
+<p>The sender and receiver pull the latest account state from the contract (if it exists) or initialize it locally.</p>
+<p>The <code>Transfer</code> zk program accepts <strong>two</strong> different accounts, and outputs modified versions of both. The first account is the sending account, the second the receiving account.</p>
+<p>Recall that the structure of a payment account includes the hash of the sender and owner keys. The <code>Transfer</code> program asserts knowledge of the preimage of <code>H(owner_key)</code> for the sending account (if it's a payment account) and preimage knowledge of <code>H(sender_key)</code> for the receiving account.</p>
+<p>Assuming these assertions pass the sending account balance is decremented, and the receiving account is incremented. The new encrypted state for both accounts is output as public data.</p>
+<p>Using a shared secret means either party can decrypt the account state, but using zk proofs and Ethereum we can assert statements about <em>who</em> can change the data, and <em>how</em> they can change it.</p>
+<p>There's still a problem though. Say that Alice transfers me 1 Ether. She gives me a zk proof modifying both accounts, but before I broadcast it to the blockchain Alice sends another transaction. I can easily argue that I am owed money because I hold a signed piece of data indicating:</p>
+<ul>
+<li>both account owners</li>
+<li>transfer amount</li>
+<li>start and end encrypted states</li>
+</ul>
+<p>Offline transaction systems become <em>much</em> more doable given periodic synchronization (e.g. every few days).</p>
+<h4>Withdraw</h4>
+<p>Assert account owner, decrement, <code>msg.sender.transfer</code>, etc.</p>
+<h3>Heteromorphic encryption</h3>
+<p>I'm calling this &quot;heteromorphic encryption&quot; because I see it as a client side alternative to homomorphic encyption.</p>
+<p>Using modern recursion techniques should allow rolling a system like this into an <code>O(1)</code> sized blockchain + smart contract system. Indeed it should be possible to take Ethereum and transplant the entire state onto a completely different structure in a way that avoids downtime. Alternatively the L2 approach could work as well.</p>
+<h3>Why aren't people doing this?</h3>
+<p>It's simple, working with zk is <strong>difficult</strong>. The tooling is bad and the concepts are hard. This is changing with zkvm's, and there are some emerging abstractions that should make zk easy to use in all applications (<a href="https://docs.rs/zkpo/latest/zkpo/">shameless plug</a>).</p>
+<p>There's an obvious future where all data is owned by users, we just have to build it.</p>
+<p>If you'd like to read more about <a href="https://github.com/chancehudson/heteromorphic/?tab=readme-ov-file#heteromorphic-encryption">heteromorphic encryption</a>.</p>
+
+</body>
+</html>
