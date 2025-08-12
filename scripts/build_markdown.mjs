@@ -1,9 +1,10 @@
 import { promises as fs, statSync } from "fs";
 
+import footnote from "markdown-it-footnote";
 import MarkdownIt from "markdown-it";
 const markdown = new MarkdownIt({
   html: true,
-});
+}).use(footnote);
 
 // interesting
 // import markdownToHtml from "./ai/md_to_markdown.mjs";
