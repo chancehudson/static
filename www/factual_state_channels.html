@@ -44,7 +44,7 @@
 <h4>Transfer</h4>
 <p>Transfer functions are tricky. Each user state is encrypted using a secret key known only to the user, so how can we safely modify someone elses balance?</p>
 <p>The key is making a separate account with a <strong>shared secret</strong>. We assume the two parties are capable of communicating to do a 1 time setup. We'll call the private keys for sender and owner <code>sender_key</code> and <code>owner_key</code> respectively.</p>
-<p>Sender and owner agree on a shared secret <code>H(H(sender_key), H(owner_key))</code>. This is accomplished by having both parties produce a zk proof of knowledge for preimage of either <code>H(sender_key)</code> or <code>H(owner_key)</code> (or they can just claim knowledge, lying here gains neither anything).</p>
+<p>Sender and owner agree on a shared secret <code>H(H(sender_key), H(owner_key))</code> <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>. This is accomplished by having both parties produce a zk proof of knowledge for preimage of either <code>H(sender_key)</code> or <code>H(owner_key)</code> (or they can just claim knowledge, lying here gains neither anything).</p>
 <p>The sender and receiver pull the latest account state from the contract (if it exists) or initialize it locally.</p>
 <p>The <code>Transfer</code> zk program accepts <strong>two</strong> different accounts, and outputs modified versions of both. The first account is the sending account, the second the receiving account.</p>
 <p>Recall that the structure of a payment account includes the hash of the sender and owner keys. The <code>Transfer</code> program asserts knowledge of the preimage of <code>H(owner_key)</code> for the sending account (if it's a payment account) and preimage knowledge of <code>H(sender_key)</code> for the receiving account.</p>
@@ -66,6 +66,13 @@
 <p>It's simple, working with zk is <strong>difficult</strong>. The tooling is bad and the concepts are hard. This is changing with zkvm's, and there are some emerging abstractions that should make zk easy to use in all applications (<a href="https://docs.rs/zkpo/latest/zkpo/">shameless plug</a>).</p>
 <p>There's an obvious future where all data is owned by users, we just have to build it.</p>
 <p>If you'd like to read more about <a href="https://github.com/chancehudson/heteromorphic/?tab=readme-ov-file#heteromorphic-encryption">heteromorphic encryption</a>.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>The shared secret should be <code>H(H(sender_key, H(owner_key)), H(owner_key, H(sender_key)))</code> or similar, but is simplified in this writing. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
 </body>
 </html>

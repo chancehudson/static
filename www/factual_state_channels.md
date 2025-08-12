@@ -56,7 +56,7 @@ Transfer functions are tricky. Each user state is encrypted using a secret key k
 
 The key is making a separate account with a **shared secret**. We assume the two parties are capable of communicating to do a 1 time setup. We'll call the private keys for sender and owner `sender_key` and `owner_key` respectively.
 
-Sender and owner agree on a shared secret `H(H(sender_key), H(owner_key))`. This is accomplished by having both parties produce a zk proof of knowledge for preimage of either `H(sender_key)` or `H(owner_key)` (or they can just claim knowledge, lying here gains neither anything).
+Sender and owner agree on a shared secret `H(H(sender_key), H(owner_key))` [^1]. This is accomplished by having both parties produce a zk proof of knowledge for preimage of either `H(sender_key)` or `H(owner_key)` (or they can just claim knowledge, lying here gains neither anything).
 
 The sender and receiver pull the latest account state from the contract (if it exists) or initialize it locally.
 
@@ -93,4 +93,4 @@ There's an obvious future where all data is owned by users, we just have to buil
 
 If you'd like to read more about [heteromorphic encryption](https://github.com/chancehudson/heteromorphic/?tab=readme-ov-file#heteromorphic-encryption).
 
-
+[^1]: The shared secret should be `H(H(sender_key, H(owner_key)), H(owner_key, H(sender_key)))` or similar, but is simplified in this writing.
